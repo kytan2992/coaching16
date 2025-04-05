@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Teraform-Destroy:
+  Terraform-Destroy:
     runs-on: ubuntu-latest
     defaults:
       run:

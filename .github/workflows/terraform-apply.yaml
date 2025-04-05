@@ -7,7 +7,7 @@ on:
       - "terraform/*"
 
 jobs:
-  Teraform-Apply:
+  Terraform-Apply:
     runs-on: ubuntu-latest
     defaults:
       run:
