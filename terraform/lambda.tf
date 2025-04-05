@@ -1,12 +1,12 @@
 data "archive_file" "create_url" {
   type        = "zip"
-  source_dir  = "${path.module}/lambda_functions/create_url.py"
+  source_file = "${path.module}/lambda_functions/create_url.py"
   output_path = "${path.module}/lambda_functions/create_url.zip"  
 }
 
 data "archive_file" "retrieve_url" {
   type        = "zip"
-  source_dir  = "${path.module}/lambda_functions/retrieve_url.py"
+  source_file = "${path.module}/lambda_functions/retrieve_url.py"
   output_path = "${path.module}/lambda_functions/retrieve_url.zip"  
 }
 
