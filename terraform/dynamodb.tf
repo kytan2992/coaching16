@@ -33,10 +33,10 @@ resource "aws_dynamodb_table" "url_table" {
     type = "N"
   }
 
-  attribute {
-    name = "analytics"
-    type = "M"  # Map type for nested data (User-Agent, source IP, etc.)
-  }
+  # attribute {
+  #   name = "analytics"
+  #   type = "M"  # Map type for nested data (User-Agent, source IP, etc.)
+  # }
   
   ttl {
     attribute_name = "ttl"
