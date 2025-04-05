@@ -7,16 +7,6 @@ resource "aws_dynamodb_table" "url_table" {
     name = "short_id"
     type = "S"
   }
-  
-  attribute {
-    name = "long_url"
-    type = "S"
-  }
-
-  attribute {
-    name = "hits"
-    type = "N"
-  }
 
 }
   
