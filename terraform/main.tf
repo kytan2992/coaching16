@@ -1,3 +1,3 @@
-# locals {
-#   resource_prefix = "ky-tf"
-# }
+locals {
+  resource_prefix = "ky-tf"
+}
