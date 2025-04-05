@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "ky-s3-terraform"
-    key    = "ky-terraform-coaching16.tfstate"
+    key    = "ky-terraform-coaching-16.tfstate"
     region = "us-east-1"
   }
   required_providers {
