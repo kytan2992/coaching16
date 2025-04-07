@@ -50,15 +50,13 @@ resource "aws_wafv2_web_acl_association" "api" {
 }
 
 resource "aws_cloudwatch_log_group" "waf_logs" {
-  name              = "aws/waf/${local.resource_prefix}-urlshortener-web-acl"
+  name              = "/aws/waf/${local.resource_prefix}-urlshortener-web-acl"
   retention_in_days = 7
 }
 
 resource "aws_wafv2_web_acl_logging_configuration" "api_gw_waf_logging" {
-  resource_arn = aws_wafv2_web_acl.api.arn
-  log_destination_configs = [
-    aws_cloudwatch_log_group.waf_logs.arn
-  ]
+  resource_arn            = aws_wafv2_web_acl.api.arn
+  log_destination_configs = [aws_cloudwatch_log_group.waf_logs.arn]
 
   logging_filter {
     # Default behavior when no filters match
