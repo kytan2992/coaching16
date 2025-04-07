@@ -41,7 +41,7 @@ resource "aws_wafv2_ip_set" "allow_ip" {
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
 
-  addresses = ["119.56.103.169/32"] # Replace with your allowed IP address
+  addresses = ["119.234.5.84/32"] # Replace with your allowed IP address
 }
 
 resource "aws_wafv2_web_acl_association" "api" {
