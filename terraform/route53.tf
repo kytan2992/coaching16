@@ -24,6 +24,10 @@ resource "aws_acm_certificate" "cert" {
   }
 }
 
+resource "aws_acm_certificate_validation" "cert_validation" {
+  certificate_arn         = aws_acm_certificate.cert.arn
+}
+
 resource "aws_api_gateway_domain_name" "shortener" {
   domain_name              = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
   regional_certificate_arn = aws_acm_certificate.cert.arn
