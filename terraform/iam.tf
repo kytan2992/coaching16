@@ -32,6 +32,6 @@ data "aws_iam_policy_document" "lambda_policy" {
       "dynamodb:PutItem",
       "dynamodb:UpdateItem"
     ]
-    resources = ["*"] # You can later restrict this to your table ARN
+    resources = [aws_dynamodb_table.url_table.arn] # You can later restrict this to your table ARN
   }
 }
