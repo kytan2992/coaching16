@@ -1,13 +1,13 @@
 data "archive_file" "create_url" {
   type        = "zip"
   source_file = "${path.module}/lambda_functions/create_url.py"
-  output_path = "${path.module}/lambda_functions/create_url.zip"  
+  output_path = "${path.module}/lambda_functions/create_url.zip"
 }
 
 data "archive_file" "retrieve_url" {
   type        = "zip"
   source_file = "${path.module}/lambda_functions/retrieve_url.py"
-  output_path = "${path.module}/lambda_functions/retrieve_url.zip"  
+  output_path = "${path.module}/lambda_functions/retrieve_url.zip"
 }
 
 resource "aws_lambda_function" "create_url" {
@@ -25,11 +25,11 @@ resource "aws_lambda_function" "create_url" {
 
   environment {
     variables = {
-      DB_NAME        = aws_dynamodb_table.url_table.name
-      REGION_AWS     = "us-east-1"
-      MIN_CHAR       = 12
-      MAX_CHAR       = 16
-      APP_URL        = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
+      DB_NAME    = aws_dynamodb_table.url_table.name
+      REGION_AWS = "us-east-1"
+      MIN_CHAR   = 12
+      MAX_CHAR   = 16
+      APP_URL    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
     }
   }
 }
@@ -49,8 +49,8 @@ resource "aws_lambda_function" "retrieve_url" {
 
   environment {
     variables = {
-      DB_NAME        = aws_dynamodb_table.url_table.name
-      REGION_AWS     = "us-east-1"
+      DB_NAME    = aws_dynamodb_table.url_table.name
+      REGION_AWS = "us-east-1"
     }
   }
 }
