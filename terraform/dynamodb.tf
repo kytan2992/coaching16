@@ -3,7 +3,7 @@ resource "aws_dynamodb_table" "url_table" {
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "short_id"
 
-   attribute {
+  attribute {
     name = "short_id"
     type = "S"
   }
@@ -18,5 +18,5 @@ resource "aws_dynamodb_table" "url_table" {
   }
 
 }
-  
+
   

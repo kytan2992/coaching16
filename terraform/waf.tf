@@ -32,7 +32,7 @@ resource "aws_wafv2_web_acl" "api" {
       metric_name                = "${local.resource_prefix}-urlshortener-allow-ip"
       sampled_requests_enabled   = true
     }
-  }  
+  }
 }
 
 resource "aws_wafv2_ip_set" "allow_ip" {

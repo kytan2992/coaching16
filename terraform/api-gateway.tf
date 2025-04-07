@@ -18,10 +18,10 @@ resource "aws_api_gateway_resource" "shortid" {
 ## POST METHOD ##
 
 resource "aws_api_gateway_method" "post_method" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.newurl.id
-  http_method = "POST"
-  authorization = "NONE" 
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.newurl.id
+  http_method   = "POST"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "post_integration" {
@@ -36,10 +36,10 @@ resource "aws_api_gateway_integration" "post_integration" {
 ## GET METHOD ##
 
 resource "aws_api_gateway_method" "get_method" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.shortid.id
-  http_method = "GET"
-  authorization = "NONE" 
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.shortid.id
+  http_method   = "GET"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "get_integration" {

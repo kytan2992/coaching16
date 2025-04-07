@@ -26,7 +26,7 @@ resource "aws_acm_certificate" "cert" {
 
 resource "aws_api_gateway_domain_name" "shortener" {
   domain_name              = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
-  regional_certificate_arn =  aws_acm_certificate.cert.arn
+  regional_certificate_arn = aws_acm_certificate.cert.arn
 
   endpoint_configuration {
     types = ["REGIONAL"]
