@@ -50,7 +50,7 @@ resource "aws_wafv2_web_acl_association" "api" {
 }
 
 resource "aws_cloudwatch_log_group" "waf_logs" {
-  name              = "/aws/waf/${local.resource_prefix}-urlshortener-web-acl"
+  name              = "aws-waf-logs-${local.resource_prefix}-urlshortener-web-acl"
   retention_in_days = 7
 }
 
