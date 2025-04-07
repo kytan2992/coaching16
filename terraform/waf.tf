@@ -55,7 +55,7 @@ resource "aws_cloudwatch_log_group" "waf_logs" {
 }
 
 resource "aws_wafv2_web_acl_logging_configuration" "api_gw_waf_logging" {
-  resource_arn            = "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/waf/${local.resource_prefix}-urlshortener-web-acl"
+  resource_arn            = "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.id}:log-group:/aws/waf/${local.resource_prefix}-urlshortener-web-acl:*"
   log_destination_configs = [aws_cloudwatch_log_group.waf_logs.arn]
 
   logging_filter {
