@@ -58,7 +58,7 @@ resource "aws_api_gateway_integration" "get_integration" {
   resource_id             = aws_api_gateway_resource.shortid.id
   http_method             = aws_api_gateway_method.get_method.http_method
   integration_http_method = "GET"
-  type                    = "AWS"
+  type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.retrieve_url.invoke_arn
   request_templates = {
     "application/json" = <<EOF
