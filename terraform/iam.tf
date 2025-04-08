@@ -37,3 +37,15 @@ data "aws_iam_policy_document" "lambda_policy" {
     resources = ["*"] # You can later restrict this to your table ARN
   }
 }
+
+resource "aws_lambda_permission" "allow_api_gateway_post" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.create_url.function_name
+  principal     = "apigateway.amazonaws.com"
+}
+
+resource "aws_lambda_permission" "allow_api_gateway_get" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.retrieve_url.function_name
+  principal     = "apigateway.amazonaws.com"
+}
