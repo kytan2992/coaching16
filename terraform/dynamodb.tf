@@ -8,6 +8,11 @@ resource "aws_dynamodb_table" "url_table" {
     type = "S"
   }
 
+  attribute {
+    name = "long_url"
+    type = "S"
+  }
+
   ttl {
     attribute_name = "ttl"
     enabled        = true

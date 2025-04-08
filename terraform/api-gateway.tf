@@ -3,19 +3,12 @@ resource "aws_api_gateway_rest_api" "api" {
   description = "API Gateway for URL Shortener"
 }
 
+## POST METHOD ##
 resource "aws_api_gateway_resource" "newurl" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   parent_id   = aws_api_gateway_rest_api.api.root_resource_id
   path_part   = "newurl"
 }
-
-resource "aws_api_gateway_resource" "shortid" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
-  path_part   = "{shortid}"
-}
-
-## POST METHOD ##
 
 resource "aws_api_gateway_method" "post_method" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
@@ -33,7 +26,24 @@ resource "aws_api_gateway_integration" "post_integration" {
   uri                     = aws_lambda_function.create_url.invoke_arn
 }
 
+resource "aws_api_gateway_method_response" "response_302" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.shortid.id
+  http_method = aws_api_gateway_method.get_method.http_method
+  status_code = "302"
+
+  response_parameters = {
+    "method.response.header.Location" = true
+  }
+}
+
 ## GET METHOD ##
+resource "aws_api_gateway_resource" "shortid" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
+  path_part   = "{shortid}"
+}
+
 
 resource "aws_api_gateway_method" "get_method" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
@@ -55,17 +65,6 @@ resource "aws_api_gateway_integration" "get_integration" {
       "short_id": "$input.params('shortid')" 
     }
     EOF
-  }
-}
-
-resource "aws_api_gateway_method_response" "response_302" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.shortid.id
-  http_method = aws_api_gateway_method.get_method.http_method
-  status_code = "302"
-
-  response_parameters = {
-    "method.response.header.Location" = true
   }
 }
 
