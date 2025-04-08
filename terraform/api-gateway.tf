@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get_integration" {
   rest_api_id             = aws_api_gateway_rest_api.api.id
   resource_id             = aws_api_gateway_resource.shortid.id
   http_method             = aws_api_gateway_method.get_method.http_method
-  integration_http_method = "POST"
+  integration_http_method = "GET"
   type                    = "AWS"
   uri                     = aws_lambda_function.retrieve_url.invoke_arn
   request_templates = {
