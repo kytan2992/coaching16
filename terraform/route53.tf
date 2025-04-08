@@ -1,14 +1,3 @@
-resource "aws_route53_record" "api" {
-  zone_id = data.aws_route53_zone.sctp_zone.zone_id
-  name    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
-  type    = "A"
-
-  alias {
-    name                   = aws_api_gateway_domain_name.shortener.regional_domain_name
-    zone_id                = aws_api_gateway_domain_name.shortener.regional_zone_id
-    evaluate_target_health = true
-  }
-}
 
 resource "aws_acm_certificate" "cert" {
   domain_name       = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
@@ -21,6 +10,18 @@ resource "aws_acm_certificate" "cert" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "api" {
+  zone_id = data.aws_route53_zone.sctp_zone.zone_id
+  name    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_api_gateway_domain_name.shortener.regional_domain_name
+    zone_id                = aws_api_gateway_domain_name.shortener.regional_zone_id
+    evaluate_target_health = true
   }
 }
 
