@@ -1,4 +1,3 @@
-
 resource "aws_acm_certificate" "cert" {
   domain_name       = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
   validation_method = "DNS" # You can also use "EMAIL" but DNS is preferred
@@ -36,4 +35,6 @@ resource "aws_api_gateway_domain_name" "shortener" {
   endpoint_configuration {
     types = ["REGIONAL"]
   }
+
+  depends_on = [ aws_acm_certificate.cert ]
 }
