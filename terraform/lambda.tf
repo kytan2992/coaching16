@@ -25,7 +25,7 @@ resource "aws_lambda_function" "create_url" {
       REGION_AWS = "us-east-1"
       MIN_CHAR   = 12
       MAX_CHAR   = 16
-      APP_URL    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
+      APP_URL    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com/"
     }
   }
 }
