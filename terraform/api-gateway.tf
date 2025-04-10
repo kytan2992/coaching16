@@ -117,7 +117,7 @@ resource "aws_api_gateway_deployment" "rest_api" {
 resource "aws_api_gateway_stage" "rest_api" {
   deployment_id = aws_api_gateway_deployment.rest_api.id
   rest_api_id   = aws_api_gateway_rest_api.api.id
-  stage_name    = "v1"
+  stage_name    = "dev"
 
   xray_tracing_enabled = true
 }
@@ -126,8 +126,4 @@ resource "aws_api_gateway_base_path_mapping" "shortener" {
   api_id      = aws_api_gateway_rest_api.api.id
   stage_name  = aws_api_gateway_stage.rest_api.stage_name
   domain_name = aws_api_gateway_domain_name.shortener.domain_name
-
-  depends_on = [
-    aws_api_gateway_deployment.rest_api
-  ]
 }
