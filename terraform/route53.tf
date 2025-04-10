@@ -36,5 +36,5 @@ resource "aws_api_gateway_domain_name" "shortener" {
     types = ["REGIONAL"]
   }
 
-  depends_on = [ aws_acm_certificate.cert ]
+  depends_on = [aws_acm_certificate.cert]
 }
