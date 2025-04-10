@@ -22,22 +22,6 @@ resource "aws_iam_role_policy" "lambda_policy" {
   policy = data.aws_iam_policy_document.lambda_policy.json
 }
 
-data "aws_iam_policy_document" "lambda_policy" {
-  statement {
-    actions = [
-      "logs:CreateLogGroup",
-      "logs:CreateLogStream",
-      "logs:PutLogEvents",
-      "xray:PutTraceSegments",
-      "xray:PutTelemetryRecords",
-      "dynamodb:GetItem",
-      "dynamodb:PutItem",
-      "dynamodb:UpdateItem"
-    ]
-    resources = ["*"] # You can later restrict this to your table ARN
-  }
-}
-
 resource "aws_lambda_permission" "allow_api_gateway_post" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.create_url.function_name
