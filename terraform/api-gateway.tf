@@ -2,7 +2,7 @@ resource "aws_api_gateway_rest_api" "api" {
   name        = "${local.resource_prefix}-urlshortener-api"
   description = "API Gateway for URL Shortener"
   endpoint_configuration {
-    types = [ "REGIONAL" ]
+    types = ["REGIONAL"]
   }
 }
 
