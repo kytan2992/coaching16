@@ -20,6 +20,6 @@ data "aws_iam_policy_document" "lambda_policy" {
       "dynamodb:Query",
       "dynamodb:UpdateItem"
     ]
-    resources = ["arn:aws:dynamodb:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/${aws_dynamodb_table.url_table.name}"] # You can later restrict this to your table ARN
+    resources = ["*"] # You can later restrict this to your table ARN
   }
 }
