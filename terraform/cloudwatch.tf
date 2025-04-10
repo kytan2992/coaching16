@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_errors" {
     FunctionName = aws_lambda_function.create_url.function_name
   }
 
-  alarm_description = "Triggered when Lambda function has 1+ errors in 1 min"
+  alarm_description = "Triggered when Lambda function has errors"
   alarm_actions     = [aws_sns_topic.createurl_alerts.arn]
 }
 
@@ -42,6 +42,6 @@ resource "aws_cloudwatch_metric_alarm" "retrieveurl_errors" {
     FunctionName = aws_lambda_function.retrieve_url.function_name
   }
 
-  alarm_description = "Triggered when Lambda function has 1+ errors in 1 min"
+  alarm_description = "Triggered when Lambda function has errors"
   alarm_actions     = [aws_sns_topic.retrieveurl_alerts.arn]
 }
