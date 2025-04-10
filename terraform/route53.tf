@@ -1,12 +1,11 @@
-resource "aws_acm_certificate" "cert" {
+module "acm" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "~> 4.0"
+
   domain_name       = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
-  validation_method = "DNS" # You can also use "EMAIL" but DNS is preferred
-
-  lifecycle {
-    create_before_destroy = true
-  }
+  zone_id           = data.aws_route53_zone.sctp_zone.zone_id
+  validation_method = "DNS"
 }
-
 resource "aws_route53_record" "api" {
   zone_id = data.aws_route53_zone.sctp_zone.zone_id
   name    = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
@@ -19,17 +18,12 @@ resource "aws_route53_record" "api" {
   }
 }
 
-resource "aws_acm_certificate_validation" "cert_validation" {
-  certificate_arn = aws_acm_certificate.cert.arn
-}
-
 resource "aws_api_gateway_domain_name" "shortener" {
   domain_name              = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
-  regional_certificate_arn = aws_acm_certificate.cert.arn
+  regional_certificate_arn = module.acm.acm_certificate_arn
 
   endpoint_configuration {
     types = ["REGIONAL"]
   }
 
-  depends_on = [aws_acm_certificate.cert]
 }
