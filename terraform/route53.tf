@@ -1,11 +1,6 @@
 resource "aws_acm_certificate" "cert" {
   domain_name       = "${local.resource_prefix}-urlshortener.sctp-sandbox.com"
   validation_method = "DNS" # You can also use "EMAIL" but DNS is preferred
-  key_algorithm     = "RSA_2048"
-
-  tags = {
-    Name = "${local.resource_prefix}-urlshortener.sctp-sandbox.com-certificate"
-  }
 
   lifecycle {
     create_before_destroy = true
